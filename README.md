@@ -86,3 +86,6 @@ Deploy SSH credentials (deploy-ssh-key):
 - ID: deploy-ssh-key
 - Username: пользователь для деплоя
 - Private Key: SSH-ключ для доступа к серверу
+
+## ENDPOINT
+http://37.9.53.26:5000/result
