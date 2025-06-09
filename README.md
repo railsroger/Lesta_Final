@@ -12,24 +12,32 @@ docker-compose.yml
 Jenkinsfile
 README.md
 ```
+## Требуется установленные: Docker, Docker Compose, Git
 
-## Install Docker
+Клонируем репозиторий, переходим в папку с проектом, вводим команду:
 ```
-# Add Docker's official GPG key:
-sudo apt-get update
-sudo apt-get install ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
+docker compose up --build
+```
+Должны подняться контейнеры с приложением и базой данных Postgresql.
+На этапе сборки может не создаться таблица в бд, необходимо пофиксить:
+```
+docker-compose run web flask shell
 
-# Add the repository to Apt sources:
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
+#в shell создадим таблицу
+from app import create_app, db
+app = create_app()
+with app.app_context():
+    db.create_all()
+```
+После запускаем и все должно отработать. С помощью curl проверяем работу:
+```
+curl -X POST http://localhost:5000/submit \
+-H "Content-Type: application/json" \
+-d '{"name": "Kirill", "score": 88}'
+
+curl http://localhost:5000/ping
+
+curl http://localhost:5000/results
 ```
 
-```
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-```
+
