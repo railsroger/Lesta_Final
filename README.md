@@ -46,43 +46,43 @@ Checkout
 - Использует учетные данные GitHub (github-credentials)
 
 Build
-Собирает Docker-образ
-Использует переменные окружения для имени образа
+- Собирает Docker-образ
+- Использует переменные окружения для имени образа
 
 Test/Lint
-Запускает параллельно две задачи:
-Lint: проверка кода с помощью flake8
-Test: запуск тестов с помощью pytest
-Обе задачи выполняются внутри Docker-контейнера
+- Запускает параллельно две задачи:
+- Lint: проверка кода с помощью flake8
+- Test: запуск тестов с помощью pytest
+- Обе задачи выполняются внутри Docker-контейнера
 
 Push
-Авторизуется в Docker Registry
-Отправляет собранный образ в registry
-Использует учетные данные registry (docker-registry-credentials)
+- Авторизуется в Docker Registry
+- Отправляет собранный образ в registry
+- Использует учетные данные registry (docker-registry-credentials)
 
 Deploy
-Использует SSH для подключения к удаленной машине
-Создает необходимые директории
-Копирует необходимые файлы (docker-compose.yml, .env)
-Создает и копирует скрипт развертывания
-Выполняет развертывание на удаленной машине
-Использует учетные данные SSH (deploy-ssh-key)
+- Использует SSH для подключения к удаленной машине
+- Создает необходимые директории
+- Копирует необходимые файлы (docker-compose.yml, .env)
+- Создает и копирует скрипт развертывания
+- Выполняет развертывание на удаленной машине
+- Использует учетные данные SSH (deploy-ssh-key)
 
 Для работы этого pipeline нужно настроить в Jenkins следующие учетные данные:
-GitHub credentials (github-credentials):
-Тип: SSH Username with private key
-ID: github-credentials
-Username: ваш GitHub username
-Private Key: ваш SSH-ключ для GitHub
+- GitHub credentials (github-credentials):
+- Тип: SSH Username with private key
+- ID: github-credentials
+- Username: ваш GitHub username
+- Private Key: ваш SSH-ключ для GitHub
 
 Docker Registry credentials (docker-registry-credentials):
-Тип: Username with password
-ID: docker-registry-credentials
-Username: ваш логин в Docker Registry
-Password: ваш пароль/токен для Docker Registry
+- Тип: Username with password
+- ID: docker-registry-credentials
+- Username: ваш логин в Docker Registry
+- Password: ваш пароль/токен для Docker Registry
 
 Deploy SSH credentials (deploy-ssh-key):
-Тип: SSH Username with private key
-ID: deploy-ssh-key
-Username: пользователь для деплоя
-Private Key: SSH-ключ для доступа к серверу
+- Тип: SSH Username with private key
+- ID: deploy-ssh-key
+- Username: пользователь для деплоя
+- Private Key: SSH-ключ для доступа к серверу
