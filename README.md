@@ -88,4 +88,4 @@ Deploy SSH credentials (deploy-ssh-key):
 - Private Key: SSH-ключ для доступа к серверу
 
 ## ENDPOINT
-http://37.9.53.26:5000/result
+http://37.9.53.26:5000/results
