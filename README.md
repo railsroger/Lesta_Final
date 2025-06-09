@@ -42,8 +42,8 @@ curl http://localhost:5000/results
 
 ## Jenkins
 Checkout
-Клонирует репозиторий с использованием SSH-ключей
-Использует учетные данные GitHub (github-credentials)
+- Клонирует репозиторий с использованием SSH-ключей
+- Использует учетные данные GitHub (github-credentials)
 
 Build
 Собирает Docker-образ
